@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Terms &amp; Conditions — Vertex Cloudway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #000000;
+    --bg2: #050508;
+    --accent: #00d4ff;
+    --accent2: #7b61ff;
+    --accent3: #ff6b9d;
+    --text: #ffffff;
+    --muted: rgba(255,255,255,0.4);
+    --text-dim: #8888a0;
+    --border: rgba(0,212,255,0.12);
+    --card-bg: rgba(255,255,255,0.03);
+    --glow: 0 0 40px rgba(0, 212, 255, 0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--text); }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    background: rgba(0,0,0,.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
+    letter-spacing: .06em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-icon {
+    width: 28px; height: 28px; border: 2px solid var(--accent);
+    transform: rotate(45deg); position: relative;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nav-logo-icon::before {
+    content: ''; position: absolute; width: 10px; height: 10px; background: var(--accent);
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .08em;
+    color: var(--muted); text-decoration: none; transition: color .2s;
+    text-transform: uppercase; position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* CONTENT */
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 160px 60px 100px;
+  }
+  .page-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .page-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .page-title span { color: var(--accent); }
+  .page-updated {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .06em;
+    margin-bottom: 48px;
+  }
+  .legal-section {
+    margin-bottom: 40px;
+  }
+  .legal-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .legal-section p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    margin-bottom: 14px;
+  }
+  .legal-section ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  .legal-section ul li {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .legal-section ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800;
+    letter-spacing: .06em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: .08em; color: var(--muted); text-decoration: none; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: .06em;
+  }
+
+  @media(max-width:768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .page-content { padding: 120px 24px 60px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://vertexcloudway.com">
+    <div class="nav-logo-icon"></div>Vertex Cloudway
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://vertexcloudway.com">Home</a></li>
+    <li><a href="https://vertexcloudway.com/privacy">Privacy</a></li>
+    <li><a href="https://vertexcloudway.com/terms-and-conditions/privacy">Terms</a></li>
+  </ul>
+</nav>
+
+<div class="page-content">
+  <div class="page-eyebrow">Legal</div>
+  <h1 class="page-title">Terms &amp;<br><span>Conditions.</span></h1>
+  <div class="page-updated">Effective Date: March 9, 2026</div>
+
+  <div class="legal-section">
+    <h2>1. Acceptance of Terms</h2>
+    <p>By downloading, installing, or using AutoRest ("the App"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, do not use the App. These Terms constitute a legal agreement between you and Vertex Cloudway LLC ("we," "us," or "our").</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>2. Description of Service</h2>
+    <p>AutoRest is a macOS productivity and wellness application that monitors your computer activity, organizes your desktop, manages downloads, and provides break reminders. The App is designed to run in the background and help you maintain healthy work habits.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>3. License Grant</h2>
+    <p>We grant you a limited, non-exclusive, non-transferable, revocable license to download, install, and use the App on any Apple-branded device that you own or control, subject to these Terms and the Apple Media Services Terms and Conditions.</p>
+    <p>You may not:</p>
+    <ul>
+      <li>Copy, modify, or distribute the App or any part of it</li>
+      <li>Reverse engineer, decompile, or disassemble the App</li>
+      <li>Rent, lease, lend, sell, or sublicense the App</li>
+      <li>Use the App for any unlawful purpose or in violation of any applicable laws</li>
+      <li>Remove or alter any proprietary notices or labels on the App</li>
+    </ul>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>4. Privacy</h2>
+    <p>Your privacy is important to us. AutoRest does not collect, store, or transmit any personal data. All activity monitoring and desktop management occurs locally on your device. For full details, please review our <a href="https://vertexcloudway.com/privacy">Privacy Policy</a>.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>5. Intellectual Property</h2>
+    <p>The App, including all content, features, functionality, design, graphics, and trademarks, is owned by Vertex Cloudway LLC and is protected by copyright, trademark, and other intellectual property laws. Nothing in these Terms grants you any rights to use our trademarks, logos, or brand elements.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>6. Disclaimer of Warranties</h2>
+    <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, either express or implied. We do not warrant that the App will be uninterrupted, error-free, or free of harmful components. Your use of the App is at your sole risk.</p>
+    <p>We make no guarantees regarding the accuracy or reliability of any productivity metrics, break reminders, or desktop management actions performed by the App.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>7. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by applicable law, Vertex Cloudway LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or business interruption, arising out of or related to your use of or inability to use the App.</p>
+    <p>In no event shall our total liability exceed the amount you paid for the App in the twelve (12) months preceding the claim.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>8. Updates and Changes</h2>
+    <p>We may update the App from time to time to improve functionality, fix bugs, or comply with legal requirements. We may also modify these Terms at any time. Continued use of the App following any changes constitutes your acceptance of the revised Terms. We encourage you to review these Terms periodically.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>9. Termination</h2>
+    <p>We reserve the right to terminate or suspend your access to the App at any time, without notice, for any reason. Upon termination, your license to use the App will immediately cease, and you must delete all copies of the App from your devices.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>10. Governing Law</h2>
+    <p>These Terms shall be governed by and construed in accordance with the laws of the United States. Any disputes arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of the courts located in the applicable jurisdiction.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>11. Third-Party Services</h2>
+    <p>The App is distributed through the Apple App Store and is subject to Apple's terms and conditions. Apple is not responsible for the App or its content. In the event of any conflict between these Terms and Apple's terms, Apple's terms shall govern with respect to the use of the App Store.</p>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="legal-section">
+    <h2>12. Contact</h2>
+    <p>If you have any questions about these Terms, please contact us at:</p>
+    <p><a href="mailto:contact@vertexcloudway.com">contact@vertexcloudway.com</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Vertex Cloudway</div>
+  <ul class="footer-links">
+    <li><a href="https://vertexcloudway.com/privacy">Privacy Policy</a></li>
+    <li><a href="https://vertexcloudway.com/terms-and-conditions/privacy">Terms</a></li>
+  </ul>
+  <div class="footer-copy">&copy; 2026 Vertex Cloudway LLC</div>
+</footer>
+
+</body>
+</html>

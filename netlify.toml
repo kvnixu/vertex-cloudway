@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/terms-and-conditions/privacy"
+  to = "/terms-and-conditions/privacy/index.html"
+  status = 200
