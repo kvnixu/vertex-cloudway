@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kitty Cloud — Vertex Cloudway</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #000000;
+    --bg2: #050508;
+    --accent: #00d4ff;
+    --accent2: #7b61ff;
+    --accent3: #ff6b9d;
+    --text: #ffffff;
+    --muted: rgba(255,255,255,0.4);
+    --text-dim: #8888a0;
+    --border: rgba(0,212,255,0.12);
+    --card-bg: rgba(255,255,255,0.03);
+    --glow: 0 0 40px rgba(0, 212, 255, 0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Manrope', -apple-system, sans-serif;
+    overflow-x: hidden; cursor: none;
+  }
+  #cursor {
+    position: fixed; width: 8px; height: 8px;
+    background: var(--accent); border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference; transition: width .2s, height .2s;
+  }
+  #cursor-ring {
+    position: fixed; width: 40px; height: 40px;
+    border: 1px solid rgba(0,212,255,.35); border-radius: 50%;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width .3s, height .3s, border-color .3s, background .3s;
+  }
+  #cursor-ring.hovering {
+    width: 60px; height: 60px;
+    border-color: var(--accent);
+    background: rgba(0,212,255,.05);
+  }
+  body::after {
+    content: ''; position: fixed; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: .55;
+  }
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px; transition: background .4s, padding .4s;
+  }
+  nav.scrolled {
+    background: rgba(0,0,0,.85); backdrop-filter: blur(20px);
+    padding: 16px 60px; border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
+    letter-spacing: .06em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-icon {
+    width: 28px; height: 28px; border: 2px solid var(--accent);
+    transform: rotate(45deg); position: relative;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .nav-logo-icon::before {
+    content: ''; position: absolute; width: 10px; height: 10px; background: var(--accent);
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .08em;
+    color: var(--muted); text-decoration: none; transition: color .2s;
+    text-transform: uppercase; position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1.5px; background: var(--accent); transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--text); }
+  .nav-links a.active::after { width: 100%; }
+  .nav-cta {
+    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: .1em;
+    text-transform: uppercase; padding: 10px 24px;
+    border: 1px solid var(--accent); color: var(--accent);
+    background: transparent; cursor: none; text-decoration: none;
+    transition: background .2s, color .2s, box-shadow .2s; border-radius: 2px;
+  }
+  .nav-cta:hover {
+    background: var(--accent); color: #000;
+    box-shadow: 0 0 30px rgba(0,212,255,.4);
+  }
+
+  .page-hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 120px 40px 80px;
+    position: relative;
+  }
+  .page-hero-eyebrow {
+    font-family: 'DM Mono', monospace; font-size: 12px;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1px solid rgba(0,212,255,.25); padding: 8px 20px;
+    background: rgba(0,212,255,.04);
+    animation: fadeSlideIn .8s ease both;
+  }
+  .page-hero-eyebrow::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+  }
+  .page-hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(42px, 8vw, 90px);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -.02em; margin-bottom: 24px;
+    animation: fadeSlideIn .8s ease .1s both;
+  }
+  .page-hero-subtitle {
+    font-size: 18px; color: var(--muted);
+    max-width: 560px; line-height: 1.7;
+    animation: fadeSlideIn .8s ease .2s both;
+  }
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .content-section {
+    padding: 80px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .content-placeholder {
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    padding: 80px 40px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    letter-spacing: .06em;
+  }
+
+  footer {
+    padding: 40px 60px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800;
+    letter-spacing: .06em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .footer-links { display: flex; gap: 32px; list-style: none; }
+  .footer-links a {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    letter-spacing: .08em; color: var(--muted); text-decoration: none; transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy {
+    font-family: 'DM Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: .06em;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .page-hero { padding: 100px 24px 60px; }
+    .content-section { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; padding: 40px 24px; }
+    body { cursor: auto; }
+    #cursor, #cursor-ring { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav id="nav">
+  <a href="vertex-cloudway.html" class="nav-logo"><div class="nav-logo-icon"></div>Vertex Cloudway</a>
+  <ul class="nav-links">
+    <li><a href="vertex-cloudway.html#apps">Apps</a></li>
+    <li><a href="kitty-cloud.html" class="active">Kitty Cloud</a></li>
+    <li><a href="vertex-cloudway.html#about">About</a></li>
+    <li><a href="vertex-cloudway.html#process">Process</a></li>
+    <li><a href="vertex-cloudway.html#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:support@vertexcloudway.com" class="nav-cta">Say Hello</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-eyebrow">🐱 Kitty Cloud</div>
+  <h1 class="page-hero-title">Kitty Cloud</h1>
+  <p class="page-hero-subtitle">Coming soon.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">Vertex Cloudway</div>
+  <ul class="footer-links">
+    <li><a href="https://vertexcloudway.com/privacy">Privacy Policy</a></li>
+    <li><a href="https://vertexcloudway.com/terms-and-conditions/privacy">Terms &amp; Conditions</a></li>
+    <li><a href="#">Accessibility</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Vertex Cloudway LLC</div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, cx = 0, cy = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+(function animate() {
+  cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2;
+  rx += (mx - rx) * 0.08; ry += (my - ry) * 0.08;
+  cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animate);
+})();
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+});
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 40);
+});
+</script>
+
+</body>
+</html>
