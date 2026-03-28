@@ -1059,7 +1059,7 @@ if(termEl)termObs.observe(termEl);
   const dPos = [{x:-5,z:0},{x:-2.5,z:-0.8},{x:0,z:0.3},{x:2.5,z:-0.5},{x:5,z:0.2}];
 
   class DS {
-    constructor(m,rp){this.m=m;this.rp=rp;this.v=new THREE.Vector3();this.av=new THREE.Vector3();this.rolling=false;this.idle=0;this.bp=Math.random()*Math.PI*2;this.bs=0.3+Math.random()*0.2;}
+    constructor(m,rp,key){this.m=m;this.rp=rp;this.key=key;this.v=new THREE.Vector3();this.av=new THREE.Vector3();this.rolling=false;this.idle=0;this.bp=Math.random()*Math.PI*2;this.bs=0.3+Math.random()*0.2;this.faceForward=['ghost','maze','xspace'].includes(key);}
     roll(){this.rolling=true;this.idle=0;this.v.set((Math.random()-.5)*4,5+Math.random()*3,(Math.random()-.5)*4);this.av.set((Math.random()-.5)*15,(Math.random()-.5)*15,(Math.random()-.5)*15);}
     update(dt){
       if(this.rolling){
@@ -1076,7 +1076,12 @@ if(termEl)termObs.observe(termEl);
         this.m.position.y+=(Math.sin(this.bp)*0.12-this.m.position.y)*0.02;
         this.m.position.x+=(this.rp.x-this.m.position.x)*0.02;
         this.m.position.z+=(this.rp.z-this.m.position.z)*0.02;
-        this.m.rotation.y+=0.15*dt;
+        if(this.faceForward){
+          this.m.rotation.x+=(0.3-this.m.rotation.x)*0.03;
+          this.m.rotation.y+=0.08*dt;
+        } else {
+          this.m.rotation.y+=0.15*dt;
+        }
       }
     }
   }
@@ -1106,7 +1111,16 @@ if(termEl)termObs.observe(termEl);
       group.position.set(dPos[i].x, 0, dPos[i].z);
       group.traverse(c=>{if(c.isMesh){c.castShadow=true;c.receiveShadow=true;}});
       dScene.add(group);
-      dDice[d.key] = new DS(group, dPos[i]);
+      // Set initial rotation so image face is visible to camera
+      const faceRot = {
+        ghost: {x: 0.3, y: 0.2, z: 0},
+        maze: {x: 0.3, y: -0.2, z: 0},
+        xspace: {x: 0.3, y: 0.15, z: 0}
+      };
+      if(faceRot[d.key]){
+        group.rotation.set(faceRot[d.key].x, faceRot[d.key].y, faceRot[d.key].z);
+      }
+      dDice[d.key] = new DS(group, dPos[i], d.key);
       dLoaded++;
       if(dLoaded===5) setTimeout(()=>window.diceRollAll(), 600);
     }, null, (err)=>{console.error('Dice load error:',d.file,err);dLoaded++;});
