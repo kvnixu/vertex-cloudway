@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <style>
   :root {
     --bg: #000000;
@@ -98,6 +99,46 @@
     pointer-events: none; z-index: 1000; opacity: .55;
   }
   ::-webkit-scrollbar { width: 3px; }
+  /* ─── DICE SHOWCASE SECTION ─── */
+  #dice-showcase {
+    position: relative;
+    width: 100%; height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 40%, #0d0d2b 0%, #050510 60%, #000 100%);
+  }
+  #dice-canvas { width: 100%; height: 100%; display: block; }
+  .dice-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    padding-bottom: 60px; pointer-events: none; z-index: 2;
+  }
+  .dice-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 4vw, 2.2rem); font-weight: 700;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px;
+  }
+  .dice-subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.35); text-align: center; }
+  .dice-controls { display: flex; gap: 10px; margin-top: 16px; pointer-events: all; flex-wrap: wrap; justify-content: center; }
+  .dice-btn {
+    padding: 8px 18px; border: 1px solid rgba(123,97,255,0.3);
+    background: rgba(10,10,30,0.7); color: rgba(200,180,255,0.8);
+    border-radius: 20px; cursor: pointer; font-size: 13px; font-family: 'DM Mono', monospace;
+    backdrop-filter: blur(10px); transition: all 0.3s ease;
+  }
+  .dice-btn:hover { background: rgba(123,97,255,0.25); border-color: #7b61ff; color: #fff; }
+  .dice-scroll-hint {
+    position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; z-index: 2;
+  }
+  .dice-scroll-hint span { font-size: 11px; color: rgba(255,255,255,0.2); font-family: 'DM Mono', monospace; letter-spacing: 2px; text-transform: uppercase; }
+  .dice-scroll-line {
+    width: 1px; height: 30px;
+    background: linear-gradient(to bottom, rgba(123,97,255,0.5), transparent);
+    animation: dice-scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes dice-scroll-pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
   ::-webkit-scrollbar-track { background: #000; }
   ::-webkit-scrollbar-thumb { background: var(--accent); }
 
@@ -556,6 +597,27 @@
   <a href="mailto:support@vertexcloudway.com" class="nav-cta">Say Hello</a>
 </nav>
 
+<!-- ─── DICE SHOWCASE ─── -->
+<section id="dice-showcase">
+  <canvas id="dice-canvas"></canvas>
+  <div class="dice-overlay">
+    <div class="dice-title">Kitty Cloud Dice Collection</div>
+    <div class="dice-subtitle">Tap to roll · Scroll down to explore</div>
+    <div class="dice-controls">
+      <button class="dice-btn" onclick="diceRollAll()">Roll All</button>
+      <button class="dice-btn" onclick="diceRollOne('cat')">Cat</button>
+      <button class="dice-btn" onclick="diceRollOne('power')">Power</button>
+      <button class="dice-btn" onclick="diceRollOne('ghost')">Ghost</button>
+      <button class="dice-btn" onclick="diceRollOne('maze')">Maze</button>
+      <button class="dice-btn" onclick="diceRollOne('xspace')">X Space</button>
+    </div>
+  </div>
+  <div class="dice-scroll-hint">
+    <span>Scroll</span>
+    <div class="dice-scroll-line"></div>
+  </div>
+</section>
+
 <section id="hero">
   <canvas id="lightning-canvas"></canvas>
   <canvas id="network-canvas"></canvas>
@@ -951,5 +1013,135 @@ if(termEl)termObs.observe(termEl);
   animateStars(0);
 })();
 </script>
+
+<!-- ─── DICE SHOWCASE SCRIPT ─── -->
+<script>
+(function(){
+  const dCanvas = document.getElementById('dice-canvas');
+  if(!dCanvas) return;
+
+  const dScene = new THREE.Scene();
+  dScene.background = null;
+  dScene.fog = new THREE.FogExp2(0x0a0a1a, 0.02);
+
+  const dCam = new THREE.PerspectiveCamera(50, dCanvas.clientWidth/dCanvas.clientHeight, 0.1, 100);
+  dCam.position.set(0, 6, 13);
+  dCam.lookAt(0, 0.5, 0);
+
+  const dRenderer = new THREE.WebGLRenderer({canvas: dCanvas, alpha: true, antialias: true});
+  dRenderer.setSize(dCanvas.clientWidth, dCanvas.clientHeight);
+  dRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  dRenderer.shadowMap.enabled = true;
+  dRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+  dRenderer.toneMappingExposure = 1.3;
+
+  // Lighting
+  dScene.add(new THREE.AmbientLight(0x404060, 0.8));
+  const dMain = new THREE.DirectionalLight(0xffffff, 1.5);
+  dMain.position.set(5, 10, 5); dMain.castShadow = true;
+  dMain.shadow.mapSize.set(1024,1024);
+  dScene.add(dMain);
+  const dFill = new THREE.DirectionalLight(0x8888ff, 0.4);
+  dFill.position.set(-5, 5, -5); dScene.add(dFill);
+  const dRim = new THREE.DirectionalLight(0xff88ff, 0.3);
+  dRim.position.set(0, 3, -8); dScene.add(dRim);
+
+  // Ground
+  const dGround = new THREE.Mesh(
+    new THREE.PlaneGeometry(40, 40),
+    new THREE.MeshStandardMaterial({color:0x0a0a1a, roughness:0.9, metalness:0.1})
+  );
+  dGround.rotation.x = -Math.PI/2; dGround.position.y = -1.1;
+  dGround.receiveShadow = true; dScene.add(dGround);
+
+  // Dice state
+  const dDice = {};
+  const dPos = [{x:-5,z:0},{x:-2.5,z:-0.8},{x:0,z:0.3},{x:2.5,z:-0.5},{x:5,z:0.2}];
+
+  class DS {
+    constructor(m,rp){this.m=m;this.rp=rp;this.v=new THREE.Vector3();this.av=new THREE.Vector3();this.rolling=false;this.idle=0;this.bp=Math.random()*Math.PI*2;this.bs=0.3+Math.random()*0.2;}
+    roll(){this.rolling=true;this.idle=0;this.v.set((Math.random()-.5)*4,5+Math.random()*3,(Math.random()-.5)*4);this.av.set((Math.random()-.5)*15,(Math.random()-.5)*15,(Math.random()-.5)*15);}
+    update(dt){
+      if(this.rolling){
+        this.v.y-=12*dt;
+        this.m.position.addScaledVector(this.v,dt);
+        this.m.rotation.x+=this.av.x*dt;this.m.rotation.y+=this.av.y*dt;this.m.rotation.z+=this.av.z*dt;
+        if(this.m.position.y<0){this.m.position.y=0;this.v.y*=-0.4;this.v.x*=0.7;this.v.z*=0.7;this.av.multiplyScalar(0.6);if(Math.abs(this.v.y)<0.3)this.v.y=0;}
+        this.av.multiplyScalar(0.995);
+        this.v.x+=(this.rp.x-this.m.position.x)*0.5*dt;
+        this.v.z+=(this.rp.z-this.m.position.z)*0.5*dt;
+        if(this.v.length()<0.05&&this.av.length()<0.1&&this.m.position.y<0.1){this.idle+=dt;if(this.idle>1)this.rolling=false;}
+      } else {
+        this.bp+=this.bs*dt;
+        this.m.position.y+=(Math.sin(this.bp)*0.12-this.m.position.y)*0.02;
+        this.m.position.x+=(this.rp.x-this.m.position.x)*0.02;
+        this.m.position.z+=(this.rp.z-this.m.position.z)*0.02;
+        this.m.rotation.y+=0.15*dt;
+      }
+    }
+  }
+
+  // Load dice
+  const dLoader = new THREE.GLTFLoader();
+  let dLoaded = 0;
+  const dFiles = [
+    {key:'cat',file:'cat-dice.glb'},
+    {key:'power',file:'power-dice.glb'},
+    {key:'ghost',file:'ghost-dice.glb'},
+    {key:'maze',file:'maze-dice.glb'},
+    {key:'xspace',file:'xspace-dice.glb'},
+  ];
+
+  dFiles.forEach((d,i)=>{
+    dLoader.load(d.file, (gltf)=>{
+      const model = gltf.scene;
+      const box = new THREE.Box3().setFromObject(model);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      model.position.sub(center);
+      const group = new THREE.Group();
+      group.add(model);
+      const s = 2.0/Math.max(size.x,size.y,size.z);
+      group.scale.setScalar(s);
+      group.position.set(dPos[i].x, 0, dPos[i].z);
+      group.traverse(c=>{if(c.isMesh){c.castShadow=true;c.receiveShadow=true;}});
+      dScene.add(group);
+      dDice[d.key] = new DS(group, dPos[i]);
+      dLoaded++;
+      if(dLoaded===5) setTimeout(()=>window.diceRollAll(), 600);
+    }, null, (err)=>{console.error('Dice load error:',d.file,err);dLoaded++;});
+  });
+
+  window.diceRollAll = ()=> Object.values(dDice).forEach(d=>d.roll());
+  window.diceRollOne = (key)=>{ if(dDice[key]) dDice[key].roll(); };
+
+  // Mouse follow
+  let dMx=0, dMy=0;
+  dCanvas.addEventListener('mousemove', (e)=>{
+    dMx = (e.clientX/window.innerWidth - 0.5)*2;
+    dMy = (e.clientY/window.innerHeight - 0.5)*2;
+  });
+
+  const dClock = new THREE.Clock();
+  function dAnimate(){
+    requestAnimationFrame(dAnimate);
+    const dt = Math.min(dClock.getDelta(), 0.05);
+    Object.values(dDice).forEach(d=>d.update(dt));
+    dCam.position.x += (dMx*2 - dCam.position.x)*0.02;
+    dCam.position.y += (6 - dMy*0.5 - dCam.position.y)*0.02;
+    dCam.lookAt(0, 0.5, 0);
+    dRenderer.render(dScene, dCam);
+  }
+  dAnimate();
+
+  window.addEventListener('resize', ()=>{
+    const w = dCanvas.clientWidth, h = dCanvas.clientHeight;
+    dCam.aspect = w/h;
+    dCam.updateProjectionMatrix();
+    dRenderer.setSize(w, h);
+  });
+})();
+</script>
+
 </body>
 </html>
