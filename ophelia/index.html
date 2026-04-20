@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#04060f" />
+
+<title>Ophelia — A local-first project tracker · Vertex Cloudway</title>
+<meta name="description" content="Ophelia is a beautiful, local-first Mac desktop app for tracking projects, notes, sketches and ideas — made by Vertex Cloudway. Free, private, offline-friendly." />
+
+<meta property="og:title" content="Ophelia — local-first project tracker" />
+<meta property="og:description" content="A beautiful, local-first Mac desktop app for tracking projects, notes and ideas." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ============== TOP NAV ============== -->
+<header class="nav">
+  <a href="../index.html" class="nav-brand">
+    <img src="assets/logo.png" alt="Ophelia" width="28" height="28" />
+    <span>Ophelia</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#download">Download</a>
+    <a href="#faq">FAQ</a>
+    <a href="../index.html">Vertex Cloudway</a>
+    <a id="nav-github" href="#" target="_blank" rel="noopener">GitHub</a>
+  </nav>
+  <a class="btn btn-ghost btn-sm" href="#download">Get the app</a>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <span class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Version <span id="hero-version">1.0.0</span> · Local-first · Free
+    </span>
+
+    <h1 class="hero-title">
+      A quiet room for your
+      <span class="grad">thoughts &amp; projects</span>.
+    </h1>
+
+    <p class="hero-sub">
+      Ophelia is a beautiful, offline Mac app for tracking your projects, notes, sketches and ideas — all stored locally on your machine. No cloud, no accounts, no subscriptions.
+    </p>
+
+    <div class="hero-cta">
+      <a id="hero-primary-download" class="btn btn-primary btn-lg" href="#download">
+        <span class="btn-os-icon" id="hero-os-icon"></span>
+        <span>Download for <span id="hero-os-name">your Mac</span></span>
+      </a>
+      <a class="btn btn-secondary btn-lg" href="#features">See what's inside ↓</a>
+    </div>
+
+    <div class="hero-meta">
+      <span id="hero-os-detail">Detecting your platform…</span>
+      <span class="dot">·</span>
+      <a href="#download">Other downloads</a>
+    </div>
+  </div>
+
+  <div class="hero-screenshot">
+    <div class="hero-icon-card">
+      <img src="assets/logo.png" alt="Ophelia app icon" />
+    </div>
+  </div>
+</section>
+
+<!-- ============== FEATURES ============== -->
+<section id="features" class="section">
+  <div class="section-head">
+    <span class="kicker">Features</span>
+    <h2>Everything you need to think clearly.</h2>
+    <p class="section-sub">A quiet, focused workspace for your projects, notes, sketches, and references — all in one place.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(141,114,255,.15);color:#8d72ff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <h3>Free-floating canvas</h3>
+      <p>Drop images, videos, shapes, sticky notes, and tables anywhere on the page. Drag, resize, rotate — like a whiteboard, but for your projects.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(125,226,255,.15);color:#7de2ff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h10M4 17h16"/></svg>
+      </div>
+      <h3>Rich-text blocks</h3>
+      <p>Powered by BlockNote — headings, lists, checklists, quotes, code blocks, font choices, line spacing, and a familiar slash menu.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,184,107,.15);color:#ffb86b">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l3-1 12-12-2-2L4 18z"/><path d="M14 6l4 4"/></svg>
+      </div>
+      <h3>Draw &amp; annotate</h3>
+      <p>Freehand pen with adjustable color and width, plus a stroke eraser. Sketch on top of any page like you would on real paper.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,95,201,.15);color:#ff5fc9">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+      </div>
+      <h3>Tables &amp; lines</h3>
+      <p>Full editable tables with row/column controls, plus solid, dashed, and dotted line tools — perfect for diagrams and rough planning.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(141,114,255,.15);color:#8d72ff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 4-9 4-9-4 9-4z"/><path d="M3 10l9 4 9-4M3 14l9 4 9-4"/></svg>
+      </div>
+      <h3>Multi-page projects</h3>
+      <p>Each project can have any number of pages, each with its own background color and content — pages stay scoped, no bleed-through.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(122,255,195,.15);color:#7affc3">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+      </div>
+      <h3>100% local</h3>
+      <p>Everything is stored in a SQLite file on your computer. No accounts, no servers, no telemetry. Your notes never leave your machine.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(125,226,255,.15);color:#7de2ff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      </div>
+      <h3>Always autosaved</h3>
+      <p>Every keystroke is debounced and persisted. Close the lid, kill the app, lose power — nothing is lost.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,95,201,.15);color:#ff5fc9">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <h3>Export to Markdown</h3>
+      <p>Need to share or back up? One click exports any page to a clean Markdown file you can paste anywhere.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== DOWNLOAD ============== -->
+<section id="download" class="section section-alt">
+  <div class="section-head">
+    <span class="kicker">Download</span>
+    <h2>Get Ophelia for your Mac</h2>
+    <p class="section-sub">Free forever. No account required. Open the installer, drag to Applications, and you're done. Windows &amp; Linux versions are on the roadmap.</p>
+  </div>
+
+  <div class="downloads-grid">
+    <div class="download-card" data-os="mac">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="currentColor"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.65-2.323-7.34 0-4.31 2.797-6.6 5.552-6.6 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.955 4.45z"/></svg>
+      </div>
+      <h3>macOS</h3>
+      <p class="download-meta">Universal · Apple Silicon &amp; Intel</p>
+      <div class="download-buttons">
+        <a id="dl-mac-arm64" class="btn btn-primary" href="#">Apple Silicon (.dmg)</a>
+        <a id="dl-mac-x64" class="btn btn-secondary" href="#">Intel (.dmg)</a>
+      </div>
+      <p class="download-req">Requires macOS 11 (Big Sur) or later</p>
+    </div>
+  </div>
+
+  <div class="download-footnote">
+    <p>
+      Source is on GitHub — you can
+      <a id="footer-source" href="#" target="_blank" rel="noopener">view the code</a>
+      or
+      <a id="footer-releases" href="#" target="_blank" rel="noopener">browse all releases</a>.
+    </p>
+  </div>
+</section>
+
+<!-- ============== SYSTEM REQ ============== -->
+<section class="section system-req">
+  <div class="section-head compact">
+    <span class="kicker">Requirements</span>
+    <h2>System requirements</h2>
+  </div>
+  <div class="req-grid">
+    <div class="req-card">
+      <h4>Minimum</h4>
+      <ul>
+        <li>200 MB free disk space</li>
+        <li>2 GB RAM</li>
+        <li>macOS 11 (Big Sur)</li>
+      </ul>
+    </div>
+    <div class="req-card">
+      <h4>Recommended</h4>
+      <ul>
+        <li>500 MB free disk space</li>
+        <li>4 GB RAM</li>
+        <li>macOS 13 (Ventura) or later</li>
+      </ul>
+    </div>
+    <div class="req-card">
+      <h4>Privacy &amp; data</h4>
+      <ul>
+        <li>No analytics or tracking</li>
+        <li>No internet connection required</li>
+        <li>All data stays on your machine</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section id="faq" class="section section-alt">
+  <div class="section-head">
+    <span class="kicker">FAQ</span>
+    <h2>Common questions</h2>
+  </div>
+
+  <div class="faq">
+    <details>
+      <summary>Is Ophelia really free?</summary>
+      <p>Yes. There is no paid tier, no trial, no account. The whole app runs locally on your Mac.</p>
+    </details>
+    <details>
+      <summary>Where is my data stored?</summary>
+      <p>Everything lives in a single SQLite file in your Mac's standard app-data folder: <code>~/Library/Application Support/Ophelia/</code>. You can back it up, sync it through iCloud/Dropbox, or delete it any time.</p>
+    </details>
+    <details>
+      <summary>Why does macOS warn me about an "unidentified developer"?</summary>
+      <p>If you see this warning, it means the build you downloaded isn't notarized yet. To open it anyway: right-click the app → <em>Open</em> → confirm. Full Apple notarization is on the roadmap.</p>
+    </details>
+    <details>
+      <summary>Will there be a Windows, Linux or iPad version?</summary>
+      <p>An iPad version is on the roadmap. Windows and Linux builds may follow. The Mac version is the first and primary release.</p>
+    </details>
+    <details>
+      <summary>How do I update Ophelia?</summary>
+      <p>For now, just download the latest installer from this page and re-install — your data is never touched. Auto-update is planned for a future release.</p>
+    </details>
+    <details>
+      <summary>Can I sync my notes across devices?</summary>
+      <p>Not natively — but because everything lives in a single folder, putting it inside iCloud Drive, Dropbox, or Syncthing works well. Just don't run two copies at the same time.</p>
+    </details>
+    <details>
+      <summary>Found a bug or have a feature request?</summary>
+      <p>Please open an issue on <a id="faq-issues" href="#" target="_blank" rel="noopener">GitHub Issues</a>. Reproducible bug reports and screenshots are appreciated!</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Ophelia" width="22" height="22" />
+      <span>Ophelia</span>
+    </div>
+    <p class="footer-tag">A local-first project tracker. Part of <a href="../index.html">Vertex Cloudway</a>.</p>
+    <div class="footer-links">
+      <a id="footer-github" href="#" target="_blank" rel="noopener">GitHub</a>
+      <a id="footer-releases-2" href="#" target="_blank" rel="noopener">Releases</a>
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <p class="footer-copy">© <span id="footer-year"></span> Vertex Cloudway. Free &amp; local.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
