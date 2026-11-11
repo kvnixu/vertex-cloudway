@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Vertex Cloudway</title>
+  <meta name="description" content="Get help with Vertex Cloudway apps: contact support, purchases and refunds, bug reports, and data requests." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --line:rgba(125,226,255,.18);
+      --text:#f7fbff; --muted:#9aacc8; --dim:#5f7093;
+      --cyan:#7de2ff; --violet:#8d72ff; --pink:#ff5fc9;
+      --panel:rgba(12,18,40,.68); --max:880px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--text);
+      font-family:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(125,226,255,.08), transparent 22%),
+        radial-gradient(circle at 82% 12%, rgba(141,114,255,.14), transparent 28%),
+        linear-gradient(180deg, #040610 0%, #06091a 45%, #03050d 100%);
+      min-height:100vh; line-height:1.65;
+    }
+    a{color:var(--cyan)}
+    .container{max-width:var(--max);margin:0 auto;padding:0 24px}
+    nav{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+    .nav-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;font-weight:700;letter-spacing:.02em}
+    .brand-mark{position:relative;width:22px;height:22px;display:inline-block}
+    .brand-mark::before{content:"";position:absolute;inset:0;transform:rotate(45deg);border-radius:4px;padding:1.5px;
+      background:linear-gradient(135deg,#ff6fb8 0%,#9b7bff 50%,#6ea8ff 100%);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+    .brand-mark::after{content:"";position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;
+      background:linear-gradient(135deg,#ff6fb8,#9b7bff,#6ea8ff);transform:translate(-50%,-50%)}
+    .nav-links a{color:var(--muted);text-decoration:none;margin-left:20px;font-size:14px}
+    .nav-links a:hover{color:var(--cyan)}
+    .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin:64px 0 12px}
+    h1{font-size:clamp(36px,6vw,56px);line-height:1.05;margin:0 0 16px}
+    .lead{color:var(--muted);font-size:18px;max-width:60ch;margin:0 0 40px}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:28px 30px;margin-bottom:20px}
+    .card h2{margin:0 0 10px;font-size:22px}
+    .card p,.card li{color:var(--muted)}
+    .card p{margin:0 0 10px}
+    .contact{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+    .btn{display:inline-block;padding:12px 20px;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px}
+    .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#04060f}
+    .btn-secondary{border:1px solid var(--line);color:var(--text);margin-left:8px}
+    details{border-top:1px solid rgba(255,255,255,.06);padding:16px 0}
+    details:first-of-type{border-top:0;padding-top:4px}
+    summary{cursor:pointer;font-weight:600;color:var(--text);list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::before{content:"+";display:inline-block;width:20px;color:var(--cyan);font-family:'JetBrains Mono',monospace}
+    details[open] summary::before{content:"–"}
+    details p{margin:10px 0 0 20px}
+    .apps{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+    .tag{font-family:'JetBrains Mono',monospace;font-size:13px;border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:6px 14px;color:var(--muted)}
+    footer{margin-top:60px;padding:32px 0 48px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+      color:var(--dim);font-size:12px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+    footer a{color:var(--muted);text-decoration:none;margin-left:20px}
+    footer a:hover{color:var(--cyan)}
+    @media (max-width:600px){.nav-links a{margin-left:0;margin-right:16px}.btn-secondary{margin:8px 0 0}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="/" class="brand"><span class="brand-mark"></span><span>Vertex Cloudway</span></a>
+      <div class="nav-links">
+        <a href="/#apps">Products</a>
+        <a href="/support/">Support</a>
+        <a href="/legal/privacy/">Privacy</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="eyebrow">Help Center</div>
+    <h1>Support</h1>
+    <p class="lead">Need a hand with a Vertex Cloudway app? Find quick answers below, or reach us directly and we'll get back to you.</p>
+
+    <section class="card contact">
+      <div>
+        <h2>Contact us</h2>
+        <p>Email <a href="mailto:contact@vertexcloudway.com">contact@vertexcloudway.com</a>. We usually reply within 2 business days.</p>
+      </div>
+      <div>
+        <a class="btn btn-primary" href="mailto:contact@vertexcloudway.com?subject=Support%20Request">Email support →</a>
+        <a class="btn btn-secondary" href="https://discord.gg/rCUVWJaR" target="_blank" rel="noopener">Discord</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>When you write in, please include</h2>
+      <ul>
+        <li>The app name and version (found in the App Store or the app's settings)</li>
+        <li>Your device model and iOS / macOS version</li>
+        <li>What happened, what you expected, and steps to reproduce it</li>
+        <li>Screenshots or a screen recording, if you can</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary>How do I restore a purchase?</summary>
+        <p>Open the app and look for <strong>Restore Purchases</strong> in its settings or store screen. Make sure you're signed in with the same Apple Account you used to buy.</p>
+      </details>
+      <details>
+        <summary>How do I request a refund?</summary>
+        <p>All purchases are processed by Apple, so refunds are handled by Apple. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>, sign in, and choose the purchase.</p>
+      </details>
+      <details>
+        <summary>How do I cancel a subscription?</summary>
+        <p>On iPhone or iPad, go to <strong>Settings → [your name] → Subscriptions</strong>. On Mac, open the App Store, click your name, then <strong>Account Settings → Subscriptions</strong>.</p>
+      </details>
+      <details>
+        <summary>I found a bug. What should I do?</summary>
+        <p>Email us with the details listed above. Bug reports with steps to reproduce help us fix things fastest.</p>
+      </details>
+      <details>
+        <summary>How do I ask for my data to be deleted?</summary>
+        <p>Email <a href="mailto:contact@vertexcloudway.com?subject=Data%20Request">contact@vertexcloudway.com</a> with the subject "Data Request". See our <a href="/legal/privacy/">Privacy Policy</a> for details on what we collect.</p>
+      </details>
+      <details>
+        <summary>Can I suggest a feature?</summary>
+        <p>Yes, please! Email us or share it in our Discord. We read every idea.</p>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Our apps</h2>
+      <p>This page covers support for all Vertex Cloudway apps, including:</p>
+      <div class="apps">
+        <span class="tag">Kitty Cloud</span>
+        <span class="tag">AutoRest</span>
+        <span class="tag">Ophelia</span>
+        <span class="tag">Maze Runner</span>
+        <span class="tag">Agent X</span>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2026 Vertex Cloudway LLC</div>
+      <div>
+        <a href="/support/">Support</a>
+        <a href="/legal/privacy/">Privacy</a>
+        <a href="/terms-and-conditions/privacy/">Terms</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
